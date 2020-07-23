@@ -1,0 +1,12 @@
+name: statistical_dart
+description: Simple statistics for dart and flutter.Inspired by a javascript package.
+version: 0.0.1
+homepage: "https://github.com/BuckthornInc/statistical_dart"
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  test: ^1.0.0
