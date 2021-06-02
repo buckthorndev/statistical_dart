@@ -26,4 +26,4 @@ Dart package that provide you some statistics which are useful and with the best
 
 ## Features and bugs
 
-Please file feature requests and bugs at the [issue tracker](https://github.com/BuckthornInc/statistical_dart/issues).
+Please file feature requests and bugs at the [issue tracker](https://github.com/buckthorndev/statistical_dart/issues).
