@@ -17,7 +17,7 @@ class Statistical {
   /// print(Statistical().arrMin([0.1,9,0,8,12,-1]));
   /// //output -1
   /// ```
-  arrMin(List numbers) {
+  num arrMin(List<num> numbers) {
     numbers.sort();
     return numbers[0];
   }
@@ -29,7 +29,7 @@ class Statistical {
   /// print(Statistical().arrMax([0.1,9,0,8,12,-1]));
   /// //output 12
   /// ```
-  arrMax(List numbers) {
+  num arrMax(List<num> numbers) {
     numbers.sort();
     return numbers[numbers.length - 1];
   }
@@ -42,7 +42,7 @@ class Statistical {
   /// //output 28.1
   /// ```
 
-  arrSum(List numbers) => numbers.reduce((a, b) => a + b);
+  num arrSum(List<num> numbers) => numbers.reduce((a, b) => a + b);
 
   ///In statistics and probability theory, a median is a value separating the higher half from the lower half of a data sample,
   /// a population or a probability distribution. For a data set,
@@ -55,9 +55,9 @@ class Statistical {
   /// print(Statistical().arrMedian([0.1,9,0,8,12,-1]));
   /// //output 4.05
   /// ```
-  arrMedian(List numbers) {
+  num arrMedian(List<num> numbers) {
     var middle = numbers.length ~/ 2;
-    bool isEven = numbers.length % 2 == 0;
+    var isEven = numbers.length % 2 == 0;
     numbers.sort();
     return isEven
         ? (numbers[middle - 1] + numbers[middle]) / 2
@@ -74,13 +74,13 @@ class Statistical {
   /// print(Statistical().arrMode([0.1,9,0,8,12,-1]));
   /// //output 0.1
   /// ```
-  arrMode(List numbers) {
-    double maxValue = 0;
-    int maxCount = 0;
+  num arrMode(List<num> numbers) {
+    num maxValue = 0;
+    num maxCount = 0;
 
-    for (int i = 0; i < numbers.length; ++i) {
-      int count = 0;
-      for (int j = 0; j < numbers.length; ++j) {
+    for (var i = 0; i < numbers.length; ++i) {
+      var count = 0;
+      for (var j = 0; j < numbers.length; ++j) {
         if (numbers[j] == numbers[i]) ++count;
       }
       if (count > maxCount) {
@@ -101,7 +101,7 @@ class Statistical {
   /// print(Statistical().arrMean([0.1,9,0,8,12,-1]));
   /// //output 4.683333333333334
   /// ```
-  arrMean(List numbers) => this.arrSum(numbers) / numbers.length;
+  num arrMean(List<num> numbers) => this.arrSum(numbers) / numbers.length;
 
   ///In probability theory and statistics, variance is the expectation of the squared deviation of a random variable from its mean. Informally, it measures how far a set of numbers are spread out from their average value.
   ///
@@ -112,10 +112,10 @@ class Statistical {
   /// print(Statistical().arrVariance([0.1,9,0,8,12,-1]));
   /// //output 26.40138888888889
   /// ```
-  arrVariance(List numbers) {
+  num arrVariance(List<num> numbers) {
     var sqDiff = 0.0;
     var mean = this.arrMean(numbers);
-    for (int i = 0; i < numbers.length; i++) {
+    for (var i = 0; i < numbers.length; i++) {
       sqDiff += ((numbers[i] - mean) * (numbers[i] - mean));
     }
     return sqDiff / numbers.length;
@@ -130,7 +130,7 @@ class Statistical {
   /// print(Statistical().arrStdDeviation([0.1,9,0,8,12,-1]));
   /// //output 5.138228185755172
   /// ```
-  arrStdDeviation(List numbers) => sqrt(this.arrVariance(numbers));
+  num arrStdDeviation(List<num> numbers) => sqrt(this.arrVariance(numbers));
 
   ///In mathematics, the factorial of a positive integer n, denoted by n!, is the product of all positive integers less than or equal to n.
   ///
@@ -141,9 +141,9 @@ class Statistical {
   /// print(Statistical().factorial(5));
   /// //output 120
   /// ```
-  factorial(int number) {
+  num factorial(int number) {
     var factorialResult = 1;
-    for (int i = 2; i <= number; i++) {
+    for (var i = 2; i <= number; i++) {
       factorialResult *= i;
     }
     return factorialResult;
@@ -158,7 +158,7 @@ class Statistical {
   /// print(Statistical().arrGeometricMean([1, 2, 3, 4, 5, 6, 7]));
   /// //output 3.380015159141296
   /// ```
-  arrGeometricMean(List numbers) => pow(
+  num arrGeometricMean(List<num> numbers) => pow(
       numbers.reduce((accumulator, current) => accumulator * current),
       1 / numbers.length);
 
@@ -171,9 +171,9 @@ class Statistical {
   /// print(Statistical().arrHarmonicMean([13.5, 14.5, 14.8, 15.2, 16.1 ]));
   /// //output 14.770
   /// ```
-  arrHarmonicMean(List numbers) {
+  num arrHarmonicMean(List<num> numbers) {
     var sm = 0.0;
-    for (int i = 0; i < numbers.length; i++) {
+    for (var i = 0; i < numbers.length; i++) {
       sm = sm + (1) / numbers[i];
     }
     return numbers.length / sm;
@@ -188,10 +188,10 @@ class Statistical {
   /// print(Statistical().arrCovariance([65.21, 64.75, 65.26, 65.76, 65.96] ,[67.25, 66.39, 66.12, 65.70, 66.64]));
   /// //output -0.0580
   /// ```
-  arrCovariance(List num1, List num2) {
-    if (num1.length != num2.length) return;
+  num? arrCovariance(List<num> num1, List<num> num2) {
+    if (num1.length != num2.length) return null;
     var sum = 0.0;
-    for (int i = 0; i < num2.length; i++) {
+    for (var i = 0; i < num2.length; i++) {
       sum += ((num1[i] - arrMean(num1)) * (num2[i] - arrMean(num2)));
     }
     return sum / (num1.length - 1);
@@ -233,7 +233,7 @@ class Statistical {
   ///print(Statistical().binomial(5,2,0.5));
   /////output 0.3125
   ///```
-  binomial(trials, successes, probofsuccess) =>
+  num binomial(num trials, num successes, num probofsuccess) =>
       _combinations(trials, successes) *
       pow(probofsuccess, successes) *
       pow(1 - probofsuccess, trials - successes);
